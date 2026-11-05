@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "adoptsim: Stochastic Bass diffusion with text-embedding analog priors"
+authors:
+  - family-names: Petter
+    given-names: Patrick
+version: 0.0.1
+license: Apache-2.0
+repository-code: "https://github.com/<user>/innovation-adoption-simulator"

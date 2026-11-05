@@ -1,0 +1,36 @@
+# Local assistant context, never commit
+CLAUDE.md
+ROADMAP.md
+.claude/
+*-out/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.hypothesis/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Data and caches (raw downloads are reproducible via loaders)
+data/raw/*
+data/interim/*
+data/processed/*
+!data/**/.gitkeep
+.cache/
+mlruns/
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/

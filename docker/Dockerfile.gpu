@@ -1,0 +1,13 @@
+# Batch embedding job for large encoders on a cloud GPU (e.g. A100).
+# Build:  docker build -f docker/Dockerfile.gpu -t adoptsim-embed .
+# Run:    docker run --gpus all -v $PWD/data:/app/data adoptsim-embed \
+#           --model BAAI/bge-large-en-v1.5 --input data/interim/descriptions.csv
+FROM pytorch/pytorch:2.4.1-cuda12.4-cudnn9-runtime
+
+WORKDIR /app
+COPY pyproject.toml README.md LICENSE ./
+COPY src ./src
+RUN pip install --no-cache-dir ".[embeddings]"
+
+COPY scripts/embed.py ./scripts/embed.py
+ENTRYPOINT ["python", "scripts/embed.py"]

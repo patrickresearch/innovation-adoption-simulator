@@ -1,0 +1,775 @@
+{
+  "baseline": {
+    "n": 27,
+    "no_description": [
+      "Nox pollution controls (boilers)"
+    ],
+    "technologies": [
+      "Cable TV",
+      "Cellular phone",
+      "Colour TV",
+      "Computer",
+      "Dishwasher",
+      "Disk brakes",
+      "Dryer",
+      "Ebook reader",
+      "Electric power",
+      "Electronic ignition",
+      "Home air conditioning",
+      "Household refrigerator",
+      "Internet",
+      "Microcomputer",
+      "Microwave",
+      "Podcasting",
+      "Power steering",
+      "RTGS adoption",
+      "Radial tires",
+      "Radio",
+      "Refrigerator",
+      "Shipping container port infrastructure",
+      "Smartphone usage",
+      "Social media usage",
+      "Stove",
+      "Tablet",
+      "Washing machine"
+    ],
+    "decision": {
+      "primary_encoder": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "mantel_log_q_p": 0.1488,
+      "beats_global_mean_p_holm": 1.0,
+      "beats_random_analogs_p_holm": 1.0,
+      "beats_tfidf_p_holm": 1.0,
+      "verdict": "NO-GO"
+    },
+    "mantel_log_q": [
+      {
+        "target": "log_q",
+        "encoder": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "r": 0.1092216624031474,
+        "p": 0.1488
+      },
+      {
+        "target": "log_q",
+        "encoder": "sentence:BAAI/bge-small-en-v1.5",
+        "r": 0.21239644452184742,
+        "p": 0.0292
+      },
+      {
+        "target": "log_q",
+        "encoder": "tfidf",
+        "r": -0.028013301277233785,
+        "p": 0.643
+      }
+    ],
+    "loo_mae_log_q": [
+      {
+        "target": "log_q",
+        "method": "global_mean",
+        "mae": 1.0103901118118777,
+        "ci_lo": 0.5724329294168778,
+        "ci_hi": 1.624824415491495
+      },
+      {
+        "target": "log_q",
+        "method": "random_analogs",
+        "mae": 1.1791877981848349,
+        "ci_lo": 0.7882309791171023,
+        "ci_hi": 1.7593500824148802
+      },
+      {
+        "target": "log_q",
+        "method": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "mae": 1.109333468561586,
+        "ci_lo": 0.6675416065469865,
+        "ci_hi": 1.6955050590921512
+      },
+      {
+        "target": "log_q",
+        "method": "sentence:BAAI/bge-small-en-v1.5",
+        "mae": 1.155048628867296,
+        "ci_lo": 0.662174954615966,
+        "ci_hi": 1.81611930541042
+      },
+      {
+        "target": "log_q",
+        "method": "tfidf",
+        "mae": 1.2715734843930164,
+        "ci_lo": 0.7633015333598802,
+        "ci_hi": 1.9265487824472265
+      }
+    ],
+    "tests_log_q": [
+      {
+        "target": "log_q",
+        "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "baseline": "global_mean",
+        "mae_gain": -0.0989433567497085,
+        "p": 0.786,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "baseline": "random_analogs",
+        "mae_gain": 0.06985432962324854,
+        "p": 0.2832,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "baseline": "sentence:BAAI/bge-small-en-v1.5",
+        "mae_gain": 0.04571516030570995,
+        "p": 0.3312,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "baseline": "tfidf",
+        "mae_gain": 0.16224001583143013,
+        "p": 0.1724,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:BAAI/bge-small-en-v1.5",
+        "baseline": "global_mean",
+        "mae_gain": -0.14465851705541846,
+        "p": 0.9082,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:BAAI/bge-small-en-v1.5",
+        "baseline": "random_analogs",
+        "mae_gain": 0.02413916931753858,
+        "p": 0.41,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:BAAI/bge-small-en-v1.5",
+        "baseline": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "mae_gain": -0.04571516030570995,
+        "p": 0.669,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:BAAI/bge-small-en-v1.5",
+        "baseline": "tfidf",
+        "mae_gain": 0.11652485552572021,
+        "p": 0.1926,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "tfidf",
+        "baseline": "global_mean",
+        "mae_gain": -0.2611833725811386,
+        "p": 0.988,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "tfidf",
+        "baseline": "random_analogs",
+        "mae_gain": -0.09238568620818163,
+        "p": 0.7736,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "tfidf",
+        "baseline": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "mae_gain": -0.16224001583143013,
+        "p": 0.8278,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "tfidf",
+        "baseline": "sentence:BAAI/bge-small-en-v1.5",
+        "mae_gain": -0.11652485552572021,
+        "p": 0.8076,
+        "p_holm": 1.0
+      }
+    ]
+  },
+  "households_only": {
+    "n": 21,
+    "no_description": [],
+    "technologies": [
+      "Cable TV",
+      "Cellular phone",
+      "Colour TV",
+      "Computer",
+      "Dishwasher",
+      "Dryer",
+      "Ebook reader",
+      "Electric power",
+      "Home air conditioning",
+      "Household refrigerator",
+      "Internet",
+      "Microcomputer",
+      "Microwave",
+      "Podcasting",
+      "Radio",
+      "Refrigerator",
+      "Smartphone usage",
+      "Social media usage",
+      "Stove",
+      "Tablet",
+      "Washing machine"
+    ],
+    "decision": {
+      "primary_encoder": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "mantel_log_q_p": 0.3226,
+      "beats_global_mean_p_holm": 1.0,
+      "beats_random_analogs_p_holm": 0.9139999999999999,
+      "beats_tfidf_p_holm": 0.2832,
+      "verdict": "NO-GO"
+    },
+    "mantel_log_q": [
+      {
+        "target": "log_q",
+        "encoder": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "r": 0.049790842826581354,
+        "p": 0.3226
+      },
+      {
+        "target": "log_q",
+        "encoder": "sentence:BAAI/bge-small-en-v1.5",
+        "r": 0.1339660684010362,
+        "p": 0.1182
+      },
+      {
+        "target": "log_q",
+        "encoder": "tfidf",
+        "r": -0.031748803678335574,
+        "p": 0.6438
+      }
+    ],
+    "loo_mae_log_q": [
+      {
+        "target": "log_q",
+        "method": "global_mean",
+        "mae": 1.0172437115925863,
+        "ci_lo": 0.529133617447534,
+        "ci_hi": 1.7217274613260138
+      },
+      {
+        "target": "log_q",
+        "method": "random_analogs",
+        "mae": 1.189029340258167,
+        "ci_lo": 0.7424554077515166,
+        "ci_hi": 1.8624427861615354
+      },
+      {
+        "target": "log_q",
+        "method": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "mae": 1.0420471448743345,
+        "ci_lo": 0.5233050579588141,
+        "ci_hi": 1.7638026963020705
+      },
+      {
+        "target": "log_q",
+        "method": "sentence:BAAI/bge-small-en-v1.5",
+        "mae": 1.1629241831818489,
+        "ci_lo": 0.5974820066484452,
+        "ci_hi": 1.9283942705043107
+      },
+      {
+        "target": "log_q",
+        "method": "tfidf",
+        "mae": 1.4011064750999993,
+        "ci_lo": 0.7860827115350735,
+        "ci_hi": 2.1877409081069454
+      }
+    ],
+    "tests_log_q": [
+      {
+        "target": "log_q",
+        "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "baseline": "global_mean",
+        "mae_gain": -0.024803433281748326,
+        "p": 0.5768,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "baseline": "random_analogs",
+        "mae_gain": 0.14698219538383275,
+        "p": 0.0914,
+        "p_holm": 0.9139999999999999
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "baseline": "sentence:BAAI/bge-small-en-v1.5",
+        "mae_gain": 0.12087703830751469,
+        "p": 0.1684,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "baseline": "tfidf",
+        "mae_gain": 0.3590593302256649,
+        "p": 0.0236,
+        "p_holm": 0.2832
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:BAAI/bge-small-en-v1.5",
+        "baseline": "global_mean",
+        "mae_gain": -0.145680471589263,
+        "p": 0.8884,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:BAAI/bge-small-en-v1.5",
+        "baseline": "random_analogs",
+        "mae_gain": 0.02610515707631807,
+        "p": 0.3984,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:BAAI/bge-small-en-v1.5",
+        "baseline": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "mae_gain": -0.12087703830751469,
+        "p": 0.8318,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:BAAI/bge-small-en-v1.5",
+        "baseline": "tfidf",
+        "mae_gain": 0.2381822919181502,
+        "p": 0.0304,
+        "p_holm": 0.3344
+      },
+      {
+        "target": "log_q",
+        "model": "tfidf",
+        "baseline": "global_mean",
+        "mae_gain": -0.3838627635074132,
+        "p": 0.9964,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "tfidf",
+        "baseline": "random_analogs",
+        "mae_gain": -0.21207713484183216,
+        "p": 0.9268,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "tfidf",
+        "baseline": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "mae_gain": -0.3590593302256649,
+        "p": 0.9766,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "tfidf",
+        "baseline": "sentence:BAAI/bge-small-en-v1.5",
+        "mae_gain": -0.2381822919181502,
+        "p": 0.9698,
+        "p_holm": 1.0
+      }
+    ]
+  },
+  "households_dedup": {
+    "n": 19,
+    "no_description": [],
+    "technologies": [
+      "Cable TV",
+      "Cellular phone",
+      "Colour TV",
+      "Computer",
+      "Dishwasher",
+      "Dryer",
+      "Ebook reader",
+      "Electric power",
+      "Home air conditioning",
+      "Household refrigerator",
+      "Internet",
+      "Microwave",
+      "Podcasting",
+      "Radio",
+      "Smartphone usage",
+      "Social media usage",
+      "Stove",
+      "Tablet",
+      "Washing machine"
+    ],
+    "decision": {
+      "primary_encoder": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "mantel_log_q_p": 0.3498,
+      "beats_global_mean_p_holm": 1.0,
+      "beats_random_analogs_p_holm": 0.992,
+      "beats_tfidf_p_holm": 0.5376,
+      "verdict": "NO-GO"
+    },
+    "mantel_log_q": [
+      {
+        "target": "log_q",
+        "encoder": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "r": 0.04061007511939905,
+        "p": 0.3498
+      },
+      {
+        "target": "log_q",
+        "encoder": "sentence:BAAI/bge-small-en-v1.5",
+        "r": 0.11314229486164112,
+        "p": 0.1594
+      },
+      {
+        "target": "log_q",
+        "encoder": "tfidf",
+        "r": -0.03186060039779369,
+        "p": 0.6162
+      }
+    ],
+    "loo_mae_log_q": [
+      {
+        "target": "log_q",
+        "method": "global_mean",
+        "mae": 1.0821383710991892,
+        "ci_lo": 0.5356855421635489,
+        "ci_hi": 1.9196120869076334
+      },
+      {
+        "target": "log_q",
+        "method": "random_analogs",
+        "mae": 1.2684756255716565,
+        "ci_lo": 0.7718972332445571,
+        "ci_hi": 2.07567088246635
+      },
+      {
+        "target": "log_q",
+        "method": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "mae": 1.125388593226234,
+        "ci_lo": 0.5822325632132703,
+        "ci_hi": 1.9651034268161947
+      },
+      {
+        "target": "log_q",
+        "method": "sentence:BAAI/bge-small-en-v1.5",
+        "mae": 1.2757301369872323,
+        "ci_lo": 0.6558488783114588,
+        "ci_hi": 2.1600437353452637
+      },
+      {
+        "target": "log_q",
+        "method": "tfidf",
+        "mae": 1.5010304431522854,
+        "ci_lo": 0.8234262702532807,
+        "ci_hi": 2.422560843596843
+      }
+    ],
+    "tests_log_q": [
+      {
+        "target": "log_q",
+        "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "baseline": "global_mean",
+        "mae_gain": -0.04325022212704458,
+        "p": 0.6364,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "baseline": "random_analogs",
+        "mae_gain": 0.14308703234542294,
+        "p": 0.0992,
+        "p_holm": 0.992
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "baseline": "sentence:BAAI/bge-small-en-v1.5",
+        "mae_gain": 0.15034154376099854,
+        "p": 0.1506,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "baseline": "tfidf",
+        "mae_gain": 0.3756418499260516,
+        "p": 0.0448,
+        "p_holm": 0.5376
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:BAAI/bge-small-en-v1.5",
+        "baseline": "global_mean",
+        "mae_gain": -0.1935917658880431,
+        "p": 0.9298,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:BAAI/bge-small-en-v1.5",
+        "baseline": "random_analogs",
+        "mae_gain": -0.007254511415575578,
+        "p": 0.5118,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:BAAI/bge-small-en-v1.5",
+        "baseline": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "mae_gain": -0.15034154376099854,
+        "p": 0.8496,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:BAAI/bge-small-en-v1.5",
+        "baseline": "tfidf",
+        "mae_gain": 0.22530030616505295,
+        "p": 0.078,
+        "p_holm": 0.858
+      },
+      {
+        "target": "log_q",
+        "model": "tfidf",
+        "baseline": "global_mean",
+        "mae_gain": -0.41889207205309614,
+        "p": 0.9942,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "tfidf",
+        "baseline": "random_analogs",
+        "mae_gain": -0.2325548175806286,
+        "p": 0.9204,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "tfidf",
+        "baseline": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "mae_gain": -0.3756418499260516,
+        "p": 0.9554,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "tfidf",
+        "baseline": "sentence:BAAI/bge-small-en-v1.5",
+        "mae_gain": -0.22530030616505295,
+        "p": 0.9222,
+        "p_holm": 1.0
+      }
+    ]
+  },
+  "households_dedup_relaxed": {
+    "n": 25,
+    "no_description": [
+      "Electric Range",
+      "Households with only mobile phones (no landlines)"
+    ],
+    "technologies": [
+      "Automatic transmission",
+      "Cable TV",
+      "Cellular phone",
+      "Colour TV",
+      "Computer",
+      "Dishwasher",
+      "Dryer",
+      "Ebook reader",
+      "Electric power",
+      "Flush toilet",
+      "Freezer",
+      "Home air conditioning",
+      "Household refrigerator",
+      "Internet",
+      "Landline",
+      "Microwave",
+      "Podcasting",
+      "Radio",
+      "Running water",
+      "Smartphone usage",
+      "Social media usage",
+      "Stove",
+      "Tablet",
+      "Washer",
+      "Washing machine"
+    ],
+    "decision": {
+      "primary_encoder": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "mantel_log_q_p": 0.4628,
+      "beats_global_mean_p_holm": 1.0,
+      "beats_random_analogs_p_holm": 1.0,
+      "beats_tfidf_p_holm": 1.0,
+      "verdict": "NO-GO"
+    },
+    "mantel_log_q": [
+      {
+        "target": "log_q",
+        "encoder": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "r": 0.005447852231776068,
+        "p": 0.4628
+      },
+      {
+        "target": "log_q",
+        "encoder": "sentence:BAAI/bge-small-en-v1.5",
+        "r": 0.07819551311671237,
+        "p": 0.194
+      },
+      {
+        "target": "log_q",
+        "encoder": "tfidf",
+        "r": 0.06064270166781064,
+        "p": 0.2
+      }
+    ],
+    "loo_mae_log_q": [
+      {
+        "target": "log_q",
+        "method": "global_mean",
+        "mae": 1.6372008207369237,
+        "ci_lo": 0.9699507189830052,
+        "ci_hi": 2.4419972572809905
+      },
+      {
+        "target": "log_q",
+        "method": "random_analogs",
+        "mae": 1.8521943128560636,
+        "ci_lo": 1.2613201083683265,
+        "ci_hi": 2.604987034827561
+      },
+      {
+        "target": "log_q",
+        "method": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "mae": 1.753398380859213,
+        "ci_lo": 1.0130695795762574,
+        "ci_hi": 2.67453540298057
+      },
+      {
+        "target": "log_q",
+        "method": "sentence:BAAI/bge-small-en-v1.5",
+        "mae": 1.943498362111625,
+        "ci_lo": 1.2030914873943999,
+        "ci_hi": 2.8561019777274286
+      },
+      {
+        "target": "log_q",
+        "method": "tfidf",
+        "mae": 1.8499479425471599,
+        "ci_lo": 1.0636349091482973,
+        "ci_hi": 2.774536818350788
+      }
+    ],
+    "tests_log_q": [
+      {
+        "target": "log_q",
+        "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "baseline": "global_mean",
+        "mae_gain": -0.11619756012228948,
+        "p": 0.7896,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "baseline": "random_analogs",
+        "mae_gain": 0.09879593199685041,
+        "p": 0.2626,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "baseline": "sentence:BAAI/bge-small-en-v1.5",
+        "mae_gain": 0.1900999812524119,
+        "p": 0.0702,
+        "p_holm": 0.8424
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "baseline": "tfidf",
+        "mae_gain": 0.09654956168794633,
+        "p": 0.3138,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:BAAI/bge-small-en-v1.5",
+        "baseline": "global_mean",
+        "mae_gain": -0.3062975413747013,
+        "p": 0.9802,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:BAAI/bge-small-en-v1.5",
+        "baseline": "random_analogs",
+        "mae_gain": -0.09130404925556146,
+        "p": 0.7354,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:BAAI/bge-small-en-v1.5",
+        "baseline": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "mae_gain": -0.1900999812524119,
+        "p": 0.93,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "sentence:BAAI/bge-small-en-v1.5",
+        "baseline": "tfidf",
+        "mae_gain": -0.09355041956446554,
+        "p": 0.7214,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "tfidf",
+        "baseline": "global_mean",
+        "mae_gain": -0.21274712181023578,
+        "p": 0.9432,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "tfidf",
+        "baseline": "random_analogs",
+        "mae_gain": 0.002246370308904093,
+        "p": 0.4928,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "tfidf",
+        "baseline": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "mae_gain": -0.09654956168794633,
+        "p": 0.6864,
+        "p_holm": 1.0
+      },
+      {
+        "target": "log_q",
+        "model": "tfidf",
+        "baseline": "sentence:BAAI/bge-small-en-v1.5",
+        "mae_gain": 0.09355041956446554,
+        "p": 0.2788,
+        "p_holm": 1.0
+      }
+    ]
+  }
+}

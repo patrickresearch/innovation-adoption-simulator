@@ -1,0 +1,16 @@
+site_name: adoptsim
+repo_url: https://github.com/<user>/innovation-adoption-simulator
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - Methodology: methodology.md
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - tables
+extra_javascript:
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+plugins:
+  - search
+  - mkdocstrings

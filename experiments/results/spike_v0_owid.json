@@ -1,0 +1,969 @@
+{
+  "config": {
+    "source": "owid",
+    "allow_synthetic_fallback": true,
+    "primary_encoder": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+    "extra_encoders": [
+      "sentence:BAAI/bge-small-en-v1.5"
+    ],
+    "k": 5,
+    "min_points": 8,
+    "min_peak": 0.15,
+    "min_r2": 0.95,
+    "n_sentences": 2,
+    "n_perm": 9999,
+    "seed": 0
+  },
+  "decision": {
+    "primary_encoder": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+    "mantel_log_q_p": 0.1485,
+    "beats_global_mean_p_holm": 1.0,
+    "beats_random_analogs_p_holm": 1.0,
+    "beats_tfidf_p_holm": 1.0,
+    "verdict": "NO-GO",
+    "controls_ok": true,
+    "n_technologies": 27,
+    "source": "owid"
+  },
+  "mantel": [
+    {
+      "target": "log_q",
+      "encoder": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "r": 0.1092216624031474,
+      "p": 0.1485
+    },
+    {
+      "target": "log_q",
+      "encoder": "sentence:BAAI/bge-small-en-v1.5",
+      "r": 0.21239644452184742,
+      "p": 0.0297
+    },
+    {
+      "target": "log_q",
+      "encoder": "tfidf",
+      "r": -0.028013301277233785,
+      "p": 0.6406
+    },
+    {
+      "target": "log_p",
+      "encoder": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "r": 0.017263322204422615,
+      "p": 0.3407
+    },
+    {
+      "target": "log_p",
+      "encoder": "sentence:BAAI/bge-small-en-v1.5",
+      "r": 0.06305344491185826,
+      "p": 0.1327
+    },
+    {
+      "target": "log_p",
+      "encoder": "tfidf",
+      "r": -0.050335058356987726,
+      "p": 0.8161
+    },
+    {
+      "target": "takeoff_10_90",
+      "encoder": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "r": 0.04416285825788197,
+      "p": 0.2924
+    },
+    {
+      "target": "takeoff_10_90",
+      "encoder": "sentence:BAAI/bge-small-en-v1.5",
+      "r": 0.1098622729048177,
+      "p": 0.1292
+    },
+    {
+      "target": "takeoff_10_90",
+      "encoder": "tfidf",
+      "r": -0.03450230728361539,
+      "p": 0.6687
+    }
+  ],
+  "errors": [
+    {
+      "target": "log_q",
+      "method": "global_mean",
+      "mae": 1.0103901118118777,
+      "ci_lo": 0.5724329294168778,
+      "ci_hi": 1.624824415491495
+    },
+    {
+      "target": "log_q",
+      "method": "random_analogs",
+      "mae": 1.1791877981848349,
+      "ci_lo": 0.7882309791171023,
+      "ci_hi": 1.7593500824148802
+    },
+    {
+      "target": "log_q",
+      "method": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "mae": 1.109333468561586,
+      "ci_lo": 0.6675416065469865,
+      "ci_hi": 1.6955050590921512
+    },
+    {
+      "target": "log_q",
+      "method": "sentence:BAAI/bge-small-en-v1.5",
+      "mae": 1.155048628867296,
+      "ci_lo": 0.662174954615966,
+      "ci_hi": 1.81611930541042
+    },
+    {
+      "target": "log_q",
+      "method": "tfidf",
+      "mae": 1.2715734843930164,
+      "ci_lo": 0.7633015333598802,
+      "ci_hi": 1.9265487824472265
+    },
+    {
+      "target": "log_p",
+      "method": "global_mean",
+      "mae": 4.528332811838508,
+      "ci_lo": 3.798477289549525,
+      "ci_hi": 5.274819285957877
+    },
+    {
+      "target": "log_p",
+      "method": "random_analogs",
+      "mae": 4.5998907176993455,
+      "ci_lo": 3.9102992642389807,
+      "ci_hi": 5.317280402709906
+    },
+    {
+      "target": "log_p",
+      "method": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "mae": 4.324551214038466,
+      "ci_lo": 3.468600552278381,
+      "ci_hi": 5.187325049185452
+    },
+    {
+      "target": "log_p",
+      "method": "sentence:BAAI/bge-small-en-v1.5",
+      "mae": 4.596765276064393,
+      "ci_lo": 3.5538366185952537,
+      "ci_hi": 5.6966062378155735
+    },
+    {
+      "target": "log_p",
+      "method": "tfidf",
+      "mae": 4.797161214303788,
+      "ci_lo": 3.8395688516433264,
+      "ci_hi": 5.718132574070583
+    },
+    {
+      "target": "takeoff_10_90",
+      "method": "global_mean",
+      "mae": 12.640294998007105,
+      "ci_lo": 8.606346560297787,
+      "ci_hi": 17.47377903065673
+    },
+    {
+      "target": "takeoff_10_90",
+      "method": "random_analogs",
+      "mae": 13.956375689872205,
+      "ci_lo": 10.340800661498252,
+      "ci_hi": 18.39004587716592
+    },
+    {
+      "target": "takeoff_10_90",
+      "method": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "mae": 12.196028553397056,
+      "ci_lo": 8.114261947908204,
+      "ci_hi": 17.065876875203244
+    },
+    {
+      "target": "takeoff_10_90",
+      "method": "sentence:BAAI/bge-small-en-v1.5",
+      "mae": 11.849203329574173,
+      "ci_lo": 8.210941688411511,
+      "ci_hi": 16.06384779768693
+    },
+    {
+      "target": "takeoff_10_90",
+      "method": "tfidf",
+      "mae": 13.649029810552895,
+      "ci_lo": 9.478807873742433,
+      "ci_hi": 18.461516291002475
+    }
+  ],
+  "tests": [
+    {
+      "target": "log_q",
+      "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "baseline": "global_mean",
+      "mae_gain": -0.0989433567497085,
+      "p": 0.791,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_q",
+      "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "baseline": "random_analogs",
+      "mae_gain": 0.06985432962324854,
+      "p": 0.2854,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_q",
+      "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "baseline": "sentence:BAAI/bge-small-en-v1.5",
+      "mae_gain": 0.04571516030570995,
+      "p": 0.3362,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_q",
+      "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "baseline": "tfidf",
+      "mae_gain": 0.16224001583143013,
+      "p": 0.1786,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_q",
+      "model": "sentence:BAAI/bge-small-en-v1.5",
+      "baseline": "global_mean",
+      "mae_gain": -0.14465851705541846,
+      "p": 0.908,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_q",
+      "model": "sentence:BAAI/bge-small-en-v1.5",
+      "baseline": "random_analogs",
+      "mae_gain": 0.02413916931753858,
+      "p": 0.415,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_q",
+      "model": "sentence:BAAI/bge-small-en-v1.5",
+      "baseline": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "mae_gain": -0.04571516030570995,
+      "p": 0.6639,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_q",
+      "model": "sentence:BAAI/bge-small-en-v1.5",
+      "baseline": "tfidf",
+      "mae_gain": 0.11652485552572021,
+      "p": 0.1976,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_q",
+      "model": "tfidf",
+      "baseline": "global_mean",
+      "mae_gain": -0.2611833725811386,
+      "p": 0.9881,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_q",
+      "model": "tfidf",
+      "baseline": "random_analogs",
+      "mae_gain": -0.09238568620818163,
+      "p": 0.7727,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_q",
+      "model": "tfidf",
+      "baseline": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "mae_gain": -0.16224001583143013,
+      "p": 0.8215,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_q",
+      "model": "tfidf",
+      "baseline": "sentence:BAAI/bge-small-en-v1.5",
+      "mae_gain": -0.11652485552572021,
+      "p": 0.8025,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_p",
+      "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "baseline": "global_mean",
+      "mae_gain": 0.20378159780004343,
+      "p": 0.2788,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_p",
+      "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "baseline": "random_analogs",
+      "mae_gain": 0.27533950366088034,
+      "p": 0.2116,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_p",
+      "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "baseline": "sentence:BAAI/bge-small-en-v1.5",
+      "mae_gain": 0.272214062025928,
+      "p": 0.2152,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_p",
+      "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "baseline": "tfidf",
+      "mae_gain": 0.47261000026532396,
+      "p": 0.1053,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_p",
+      "model": "sentence:BAAI/bge-small-en-v1.5",
+      "baseline": "global_mean",
+      "mae_gain": -0.0684324642258846,
+      "p": 0.5749,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_p",
+      "model": "sentence:BAAI/bge-small-en-v1.5",
+      "baseline": "random_analogs",
+      "mae_gain": 0.003125441634952348,
+      "p": 0.5012,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_p",
+      "model": "sentence:BAAI/bge-small-en-v1.5",
+      "baseline": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "mae_gain": -0.272214062025928,
+      "p": 0.7849,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_p",
+      "model": "sentence:BAAI/bge-small-en-v1.5",
+      "baseline": "tfidf",
+      "mae_gain": 0.200395938239396,
+      "p": 0.2791,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_p",
+      "model": "tfidf",
+      "baseline": "global_mean",
+      "mae_gain": -0.26882840246528067,
+      "p": 0.7786,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_p",
+      "model": "tfidf",
+      "baseline": "random_analogs",
+      "mae_gain": -0.19727049660444365,
+      "p": 0.7139,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_p",
+      "model": "tfidf",
+      "baseline": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "mae_gain": -0.47261000026532396,
+      "p": 0.8948,
+      "p_holm": 1.0
+    },
+    {
+      "target": "log_p",
+      "model": "tfidf",
+      "baseline": "sentence:BAAI/bge-small-en-v1.5",
+      "mae_gain": -0.200395938239396,
+      "p": 0.721,
+      "p_holm": 1.0
+    },
+    {
+      "target": "takeoff_10_90",
+      "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "baseline": "global_mean",
+      "mae_gain": 0.4442664446100481,
+      "p": 0.3798,
+      "p_holm": 1.0
+    },
+    {
+      "target": "takeoff_10_90",
+      "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "baseline": "random_analogs",
+      "mae_gain": 1.7603471364751484,
+      "p": 0.0931,
+      "p_holm": 0.9089999999999999
+    },
+    {
+      "target": "takeoff_10_90",
+      "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "baseline": "sentence:BAAI/bge-small-en-v1.5",
+      "mae_gain": -0.3468252238228827,
+      "p": 0.638,
+      "p_holm": 1.0
+    },
+    {
+      "target": "takeoff_10_90",
+      "model": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "baseline": "tfidf",
+      "mae_gain": 1.4530012571558368,
+      "p": 0.0592,
+      "p_holm": 0.6512
+    },
+    {
+      "target": "takeoff_10_90",
+      "model": "sentence:BAAI/bge-small-en-v1.5",
+      "baseline": "global_mean",
+      "mae_gain": 0.791091668432931,
+      "p": 0.3278,
+      "p_holm": 1.0
+    },
+    {
+      "target": "takeoff_10_90",
+      "model": "sentence:BAAI/bge-small-en-v1.5",
+      "baseline": "random_analogs",
+      "mae_gain": 2.1071723602980312,
+      "p": 0.0909,
+      "p_holm": 0.9089999999999999
+    },
+    {
+      "target": "takeoff_10_90",
+      "model": "sentence:BAAI/bge-small-en-v1.5",
+      "baseline": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "mae_gain": 0.3468252238228827,
+      "p": 0.3621,
+      "p_holm": 1.0
+    },
+    {
+      "target": "takeoff_10_90",
+      "model": "sentence:BAAI/bge-small-en-v1.5",
+      "baseline": "tfidf",
+      "mae_gain": 1.799826480978719,
+      "p": 0.0391,
+      "p_holm": 0.46920000000000006
+    },
+    {
+      "target": "takeoff_10_90",
+      "model": "tfidf",
+      "baseline": "global_mean",
+      "mae_gain": -1.0087348125457882,
+      "p": 0.7255,
+      "p_holm": 1.0
+    },
+    {
+      "target": "takeoff_10_90",
+      "model": "tfidf",
+      "baseline": "random_analogs",
+      "mae_gain": 0.3073458793193119,
+      "p": 0.4223,
+      "p_holm": 1.0
+    },
+    {
+      "target": "takeoff_10_90",
+      "model": "tfidf",
+      "baseline": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+      "mae_gain": -1.4530012571558368,
+      "p": 0.9409,
+      "p_holm": 1.0
+    },
+    {
+      "target": "takeoff_10_90",
+      "model": "tfidf",
+      "baseline": "sentence:BAAI/bge-small-en-v1.5",
+      "mae_gain": -1.799826480978719,
+      "p": 0.961,
+      "p_holm": 1.0
+    }
+  ],
+  "sensitivity": {
+    "leakage": [
+      {
+        "target": "log_q",
+        "encoder": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "r_unmasked": 0.04032516151417417,
+        "p_unmasked": 0.3285,
+        "r_masked": 0.1092216624031474,
+        "p_masked": 0.1485
+      },
+      {
+        "target": "log_p",
+        "encoder": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "r_unmasked": 0.06125607249716536,
+        "p_unmasked": 0.133,
+        "r_masked": 0.017263322204422615,
+        "p_masked": 0.3407
+      },
+      {
+        "target": "takeoff_10_90",
+        "encoder": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "r_unmasked": 0.02148521874867733,
+        "p_unmasked": 0.363,
+        "r_masked": 0.04416285825788197,
+        "p_masked": 0.2924
+      }
+    ],
+    "temporal_errors": [
+      {
+        "target": "log_q",
+        "method": "global_mean",
+        "mae": 1.0366900120964142,
+        "ci_lo": 0.6036806124885383,
+        "ci_hi": 1.6409988927106203
+      },
+      {
+        "target": "log_q",
+        "method": "random_analogs",
+        "mae": 1.0992280098173244,
+        "ci_lo": 0.6786367208884492,
+        "ci_hi": 1.694416590842389
+      },
+      {
+        "target": "log_q",
+        "method": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "mae": 1.160828053145015,
+        "ci_lo": 0.7374527291450265,
+        "ci_hi": 1.7462462765512763
+      },
+      {
+        "target": "log_q",
+        "method": "sentence:BAAI/bge-small-en-v1.5",
+        "mae": 1.1698279611120814,
+        "ci_lo": 0.7554579734918273,
+        "ci_hi": 1.7638466359844895
+      },
+      {
+        "target": "log_q",
+        "method": "tfidf",
+        "mae": 1.1407848972163304,
+        "ci_lo": 0.6533876268341411,
+        "ci_hi": 1.7975343914746966
+      },
+      {
+        "target": "log_p",
+        "method": "global_mean",
+        "mae": 5.009729427977746,
+        "ci_lo": 4.31112616278985,
+        "ci_hi": 5.7316561811628155
+      },
+      {
+        "target": "log_p",
+        "method": "random_analogs",
+        "mae": 5.0445056379887365,
+        "ci_lo": 4.348610107139786,
+        "ci_hi": 5.776808459247027
+      },
+      {
+        "target": "log_p",
+        "method": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "mae": 4.8422789546588145,
+        "ci_lo": 3.9638830941790895,
+        "ci_hi": 5.747569692691498
+      },
+      {
+        "target": "log_p",
+        "method": "sentence:BAAI/bge-small-en-v1.5",
+        "mae": 5.151761365072068,
+        "ci_lo": 4.355180487313698,
+        "ci_hi": 5.993944867694467
+      },
+      {
+        "target": "log_p",
+        "method": "tfidf",
+        "mae": 5.040120840843809,
+        "ci_lo": 4.190372240490983,
+        "ci_hi": 5.879491141531462
+      },
+      {
+        "target": "takeoff_10_90",
+        "method": "global_mean",
+        "mae": 16.951484172185857,
+        "ci_lo": 13.504596944264964,
+        "ci_hi": 20.523124375847566
+      },
+      {
+        "target": "takeoff_10_90",
+        "method": "random_analogs",
+        "mae": 17.377976796049683,
+        "ci_lo": 14.264387804395625,
+        "ci_hi": 20.686655642479682
+      },
+      {
+        "target": "takeoff_10_90",
+        "method": "sentence:sentence-transformers/all-MiniLM-L6-v2",
+        "mae": 16.928063325334673,
+        "ci_lo": 13.532516854763529,
+        "ci_hi": 20.503675134662753
+      },
+      {
+        "target": "takeoff_10_90",
+        "method": "sentence:BAAI/bge-small-en-v1.5",
+        "mae": 15.807600397929232,
+        "ci_lo": 11.697945573511243,
+        "ci_hi": 19.977314585574774
+      },
+      {
+        "target": "takeoff_10_90",
+        "method": "tfidf",
+        "mae": 16.203234309079786,
+        "ci_lo": 12.064569493446166,
+        "ci_hi": 20.40021508622678
+      }
+    ]
+  },
+  "fits": [
+    {
+      "technology": "Cable TV",
+      "first_year": 1968,
+      "n_obs": 29,
+      "p": 1.0000000000022084e-06,
+      "q": 0.17061417978855806,
+      "m": 0.7209361844591662,
+      "r2": 0.9847771057660225,
+      "rmse": 0.025936993708013525,
+      "log_p": -13.815510557962066,
+      "log_q": -1.7683505302123732,
+      "takeoff_10_90": 25.756190407317746
+    },
+    {
+      "technology": "Cellular phone",
+      "first_year": 1994,
+      "n_obs": 26,
+      "p": 0.03518440369407333,
+      "q": 0.15856854000054915,
+      "m": 0.9777426859878486,
+      "r2": 0.9910272217785677,
+      "rmse": 0.026577272937586258,
+      "log_p": -3.3471523714385643,
+      "log_q": -1.8415683501097408,
+      "takeoff_10_90": 17.78445191916809
+    },
+    {
+      "technology": "Colour TV",
+      "first_year": 1966,
+      "n_obs": 39,
+      "p": 0.041946167429449795,
+      "q": 0.15503596170528836,
+      "m": 0.970097,
+      "r2": 0.9962618232994629,
+      "rmse": 0.016008564339458492,
+      "log_p": -3.171368210684739,
+      "log_q": -1.8640981779714203,
+      "takeoff_10_90": 16.99367893761368
+    },
+    {
+      "technology": "Computer",
+      "first_year": 1992,
+      "n_obs": 11,
+      "p": 0.035165204533817405,
+      "q": 0.06693480891783428,
+      "m": 1.0,
+      "r2": 0.9914139494699211,
+      "rmse": 0.018730509475799826,
+      "log_p": -3.3476981928359026,
+      "log_q": -2.7040361344904995,
+      "takeoff_10_90": 29.589342981751823
+    },
+    {
+      "technology": "Dishwasher",
+      "first_year": 1948,
+      "n_obs": 30,
+      "p": 1.0000000000000023e-06,
+      "q": 0.16367280491376238,
+      "m": 0.6012723179435333,
+      "r2": 0.9943200081031001,
+      "rmse": 0.009976875567405785,
+      "log_p": -13.815510557964272,
+      "log_q": -1.8098859359942652,
+      "takeoff_10_90": 26.848492035349707
+    },
+    {
+      "technology": "Disk brakes",
+      "first_year": 1966,
+      "n_obs": 14,
+      "p": 0.015318766796609571,
+      "q": 0.597659738584341,
+      "m": 1.0001,
+      "r2": 0.9986866720951895,
+      "rmse": 0.013543550657152901,
+      "log_p": -4.1786766142145515,
+      "log_q": -0.5147336859957231,
+      "takeoff_10_90": 6.8425718711683725
+    },
+    {
+      "technology": "Dryer",
+      "first_year": 1950,
+      "n_obs": 10,
+      "p": 0.0058810183367324145,
+      "q": 0.07727698188502799,
+      "m": 1.0,
+      "r2": 0.9604747198308226,
+      "rmse": 0.056766392924665635,
+      "log_p": -5.136025345547537,
+      "log_q": -2.560359144123277,
+      "takeoff_10_90": 47.01559845724342
+    },
+    {
+      "technology": "Ebook reader",
+      "first_year": 2009,
+      "n_obs": 10,
+      "p": 1.0000000003663883e-06,
+      "q": 1.0703584719364112,
+      "m": 0.2750275000000001,
+      "r2": 0.9951352122586632,
+      "rmse": 0.00652016884026046,
+      "log_p": -13.815510557597886,
+      "log_q": 0.06799361286829649,
+      "takeoff_10_90": 4.105574776831629
+    },
+    {
+      "technology": "Electric power",
+      "first_year": 1908,
+      "n_obs": 49,
+      "p": 0.009569887267346904,
+      "q": 0.08471762775756014,
+      "m": 0.9999999999999999,
+      "r2": 0.985376722401115,
+      "rmse": 0.03446713903716545,
+      "log_p": -4.649133853383218,
+      "log_q": -2.4684315790541067,
+      "takeoff_10_90": 39.84349552937593
+    },
+    {
+      "technology": "Electronic ignition",
+      "first_year": 1977,
+      "n_obs": 8,
+      "p": 1.0000000000016436e-06,
+      "q": 0.947606147375017,
+      "m": 1.001,
+      "r2": 0.9659482104670034,
+      "rmse": 0.07200119535614778,
+      "log_p": -13.81551055796263,
+      "log_q": -0.05381631940848476,
+      "takeoff_10_90": 4.637406742380893
+    },
+    {
+      "technology": "Home air conditioning",
+      "first_year": 1957,
+      "n_obs": 48,
+      "p": 0.015041225306630154,
+      "q": 0.05787161569075484,
+      "m": 0.8900890000000001,
+      "r2": 0.9640129688705942,
+      "rmse": 0.04447853176242845,
+      "log_p": -4.1969604939232035,
+      "log_q": -2.849528244471199,
+      "takeoff_10_90": 46.18492978698567
+    },
+    {
+      "technology": "Household refrigerator",
+      "first_year": 1931,
+      "n_obs": 76,
+      "p": 0.011268518114606284,
+      "q": 0.1532546190587091,
+      "m": 0.9976560169390428,
+      "r2": 0.9937373594438217,
+      "rmse": 0.02055579690999493,
+      "log_p": -4.485742448963137,
+      "log_q": -1.8756545639433058,
+      "takeoff_10_90": 23.837448494437634
+    },
+    {
+      "technology": "Internet",
+      "first_year": 1993,
+      "n_obs": 24,
+      "p": 0.019684343209073633,
+      "q": 0.1643290178735007,
+      "m": 0.9038229658183257,
+      "r2": 0.9863384456335869,
+      "rmse": 0.02978402074482431,
+      "log_p": -3.9279317201888513,
+      "log_q": -1.8058846543570282,
+      "takeoff_10_90": 20.280688822301556
+    },
+    {
+      "technology": "Microcomputer",
+      "first_year": 1984,
+      "n_obs": 33,
+      "p": 1.000000000000203e-06,
+      "q": 0.16181629630567756,
+      "m": 0.8351817951039915,
+      "r2": 0.9912022502534251,
+      "rmse": 0.02333490224561715,
+      "log_p": -13.815510557964071,
+      "log_q": -1.821293560605828,
+      "takeoff_10_90": 27.15651741134812
+    },
+    {
+      "technology": "Microwave",
+      "first_year": 1975,
+      "n_obs": 10,
+      "p": 1.000000000168877e-06,
+      "q": 0.3356889423427445,
+      "m": 0.9710970999999999,
+      "r2": 0.9876639188790605,
+      "rmse": 0.04117121514332804,
+      "log_p": -13.815510557795397,
+      "log_q": -1.0915703146427793,
+      "takeoff_10_90": 13.090718908353669
+    },
+    {
+      "technology": "Podcasting",
+      "first_year": 2006,
+      "n_obs": 10,
+      "p": 0.12391266695450764,
+      "q": 0.00010000000336876835,
+      "m": 0.42156182213724025,
+      "r2": 0.9723511463638572,
+      "rmse": 0.011458813460303911,
+      "log_p": -2.0881782602659524,
+      "log_q": -9.2103403382885,
+      "takeoff_10_90": 17.722947073756067
+    },
+    {
+      "technology": "Power steering",
+      "first_year": 1951,
+      "n_obs": 28,
+      "p": 0.030722234693947182,
+      "q": 0.15070156915740487,
+      "m": 1.001,
+      "r2": 0.9744211079365576,
+      "rmse": 0.05211752971618666,
+      "log_p": -3.482768629404785,
+      "log_q": -1.8924537609460008,
+      "takeoff_10_90": 19.22141677959953
+    },
+    {
+      "technology": "RTGS adoption",
+      "first_year": 1970,
+      "n_obs": 36,
+      "p": 0.00010826306293775256,
+      "q": 0.2208803701205042,
+      "m": 1.0,
+      "r2": 0.9965968080592946,
+      "rmse": 0.008509737299923876,
+      "log_p": -9.130946524572309,
+      "log_q": -1.5101340356983668,
+      "takeoff_10_90": 19.86574642140187
+    },
+    {
+      "technology": "Radial tires",
+      "first_year": 1972,
+      "n_obs": 12,
+      "p": 0.06022356688779491,
+      "q": 0.6538393861011298,
+      "m": 1.0001,
+      "r2": 0.9867558827619323,
+      "rmse": 0.04160765514981505,
+      "log_p": -2.8096915267328666,
+      "log_q": -0.4248935446876948,
+      "takeoff_10_90": 5.37627748547015
+    },
+    {
+      "technology": "Radio",
+      "first_year": 1925,
+      "n_obs": 47,
+      "p": 0.09728258395020875,
+      "q": 0.014004642728158542,
+      "m": 0.990099,
+      "r2": 0.9923682320477993,
+      "rmse": 0.020680899776943325,
+      "log_p": -2.330135299128878,
+      "log_q": -4.268366380901882,
+      "takeoff_10_90": 20.71002996346641
+    },
+    {
+      "technology": "Refrigerator",
+      "first_year": 1925,
+      "n_obs": 48,
+      "p": 0.023013206586792838,
+      "q": 0.1228280044415222,
+      "m": 1.0,
+      "r2": 0.9885501534272741,
+      "rmse": 0.03565417464885092,
+      "log_p": -3.7716870284166237,
+      "log_q": -2.096970240070297,
+      "takeoff_10_90": 24.190649712838898
+    },
+    {
+      "technology": "Shipping container port infrastructure",
+      "first_year": 1964,
+      "n_obs": 22,
+      "p": 0.009207293340249745,
+      "q": 0.2559028639107075,
+      "m": 1.0,
+      "r2": 0.9818749526414031,
+      "rmse": 0.04305073367971866,
+      "log_p": -4.687759354615947,
+      "log_q": -1.3629573443561287,
+      "takeoff_10_90": 15.564522933491135
+    },
+    {
+      "technology": "Smartphone usage",
+      "first_year": 2011,
+      "n_obs": 9,
+      "p": 0.13406740186143337,
+      "q": 0.14701963665105663,
+      "m": 0.8799917123889983,
+      "r2": 0.9880324342602562,
+      "rmse": 0.016177772417345766,
+      "log_p": -2.00941260652688,
+      "log_q": -1.9171891184645207,
+      "takeoff_10_90": 9.889357685897458
+    },
+    {
+      "technology": "Social media usage",
+      "first_year": 2005,
+      "n_obs": 13,
+      "p": 0.06041060815566267,
+      "q": 0.2733849350266677,
+      "m": 0.8000800000000001,
+      "r2": 0.9768673561818475,
+      "rmse": 0.03614006998686757,
+      "log_p": -2.8065905577465426,
+      "log_q": -1.2968744585269807,
+      "takeoff_10_90": 10.32913901033519
+    },
+    {
+      "technology": "Stove",
+      "first_year": 1900,
+      "n_obs": 73,
+      "p": 1.0000000000026721e-06,
+      "q": 0.06320898010958315,
+      "m": 0.9999999999999998,
+      "r2": 0.9525255001610987,
+      "rmse": 0.06940717119070756,
+      "log_p": -13.815510557961602,
+      "log_q": -2.761308897581696,
+      "takeoff_10_90": 69.51922042086713
+    },
+    {
+      "technology": "Tablet",
+      "first_year": 2010,
+      "n_obs": 8,
+      "p": 0.10247157870620298,
+      "q": 0.07426074123421157,
+      "m": 0.9999999999999973,
+      "r2": 0.9827119482997964,
+      "rmse": 0.025261001480602154,
+      "log_p": -2.2781697997682278,
+      "log_q": -2.600172848674999,
+      "takeoff_10_90": 14.8777781836186
+    },
+    {
+      "technology": "Washing machine",
+      "first_year": 1930,
+      "n_obs": 74,
+      "p": 1.000000000000384e-06,
+      "q": 0.06585953224597053,
+      "m": 0.8748712833684993,
+      "r2": 0.9598408432687301,
+      "rmse": 0.049656572140719696,
+      "log_p": -13.81551055796389,
+      "log_q": -2.7202311043067784,
+      "takeoff_10_90": 66.72151057418117
+    }
+  ]
+}
