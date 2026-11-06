@@ -25,6 +25,7 @@ from adoptsim.evaluation.calibration import (
     interval_covered,
     normalised_series,
     randomized_pit,
+    training_indices,
 )
 from adoptsim.inference.posterior import posterior_from_data, predict_from_state
 from adoptsim.models.bass import bass_cumulative, fit_bass
@@ -51,11 +52,19 @@ def early_data_scores(
     n_obs: tuple[int, ...] = (1, 2, 3, 4, 6, 8),
     horizon: int = 10,
     sigma: float | None = None,
+    temper: float = 1.0,
+    forecast_sigma_scale: float = 1.0,
+    likelihoods: tuple[str, ...] = ("transition", "curve"),
+    include_nls: bool = True,
     n_paths: int = 1000,
     dt: float = 0.05,
     seed: int = 0,
 ) -> pd.DataFrame:
-    """Leave-one-technology-out scores of next-`horizon` forecasts given T observed points."""
+    """Leave-one-technology-out scores of next-`horizon` forecasts given T observed points.
+
+    `temper` is the likelihood power of the update, `forecast_sigma_scale` multiplies the
+    process noise used for forecasting (sensitivity knobs for the calibration study).
+    """
     fits = fits.reset_index(drop=True)
     series = normalised_series(curves, fits)
     names = fits.technology.astype(str).tolist()
@@ -63,7 +72,7 @@ def early_data_scores(
     rng = np.random.default_rng(seed)
     frames = []
     for i, name in enumerate(names):
-        train = [j for j in range(len(names)) if j != i]
+        train = training_indices(fits, i)
         mu, cov = fit_population_prior(theta_all[train])
         sig = sigma
         if sig is None:
@@ -76,18 +85,20 @@ def early_data_scores(
             offsets = tau[T:stop] - tau[T - 1]
             y_f = y[T:stop]
             ens: dict[str, FloatArray] = {}
+            fsig = forecast_sigma_scale * sig
             prior_draws = rng.multivariate_normal(mu, cov, size=n_paths)
             ens["prior"] = predict_from_state(
-                prior_draws, y[T - 1], offsets, sigma=sig, dt=dt, seed=int(rng.integers(2**31))
+                prior_draws, y[T - 1], offsets, sigma=fsig, dt=dt, seed=int(rng.integers(2**31))
             )
-            for lik in ("transition", "curve"):
+            for lik in likelihoods:
                 post = posterior_from_data(
                     tau[:T],
                     y[:T],
                     mu,
                     cov,
                     sigma=sig,
-                    likelihood=lik,
+                    likelihood=lik,  # type: ignore[arg-type]
+                    temper=temper,
                     n_samples=n_paths,
                     seed=int(rng.integers(2**31)),
                 )
@@ -95,11 +106,11 @@ def early_data_scores(
                     post.samples,
                     y[T - 1],
                     offsets,
-                    sigma=sig,
+                    sigma=fsig,
                     dt=dt,
                     seed=int(rng.integers(2**31)),
                 )
-            if T >= 4:
+            if include_nls and T >= 4:
                 for label, reg in (("nls", False), ("nls_map", True)):
                     point = _nls_forecast(tau[:T], y[:T], tau[T:stop], regularised=reg)
                     ens[label] = np.tile(point, (2, 1))

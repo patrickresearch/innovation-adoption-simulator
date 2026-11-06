@@ -8,14 +8,36 @@ from adoptsim.evaluation.analogs import (
     paired_permutation_test,
     random_analog_loo_error,
 )
+from adoptsim.evaluation.calibration import (
+    crps_ensemble,
+    estimate_sigma,
+    fit_population_prior,
+    increment_sigma2,
+    interval_covered,
+    loo_forecast_scores,
+    normalised_series,
+    pit_histogram,
+    randomized_pit,
+    summarize_scores,
+)
 
 __all__ = [
     "TestResult",
     "bootstrap_ci",
     "cosine_distance_matrix",
+    "crps_ensemble",
+    "estimate_sigma",
+    "fit_population_prior",
+    "increment_sigma2",
+    "interval_covered",
     "knn_loo_predict",
+    "loo_forecast_scores",
     "mantel_test",
     "mean_loo_predict",
+    "normalised_series",
     "paired_permutation_test",
+    "pit_histogram",
     "random_analog_loo_error",
+    "randomized_pit",
+    "summarize_scores",
 ]

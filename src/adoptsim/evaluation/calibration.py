@@ -72,6 +72,16 @@ def increment_sigma2(t: FloatArray, f: FloatArray, p: float, q: float) -> float:
     return float(np.mean(vals)) if vals else float("nan")
 
 
+def training_indices(fits: pd.DataFrame, i: int) -> list[int]:
+    """Curves usable as training data for curve i in a leave-one-out fold.
+
+    With a `group` column all curves of the same group are held out together, e.g. all
+    country curves of one technology: a new technology has no sibling curves to learn from.
+    """
+    key = fits["group"] if "group" in fits.columns else fits["technology"]
+    return [int(j) for j in np.flatnonzero((key != key.iloc[i]).to_numpy())]
+
+
 def normalised_series(curves: pd.DataFrame, fits: pd.DataFrame) -> Series:
     """Per technology: time since first observation and adoption divided by fitted m."""
     series: Series = {}
@@ -118,7 +128,7 @@ def loo_forecast_scores(
     rng = np.random.default_rng(seed)
     frames = []
     for i, name in enumerate(names):
-        train = [j for j in range(len(names)) if j != i]
+        train = training_indices(fits, i)
         mu, cov = fit_population_prior(theta_all[train])
         cov = cov_scale * cov
         sig = sigma
