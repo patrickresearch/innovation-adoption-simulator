@@ -72,6 +72,33 @@ def test_parameter_recovery(p: float, q: float, m: float) -> None:
     assert fit.params.m == pytest.approx(m, rel=0.05)
 
 
+def _late_start_series(seed: int = 3) -> tuple[np.ndarray, np.ndarray]:
+    # series begins at F ~ 0.35: the data say little about p
+    rng = np.random.default_rng(seed)
+    t = np.arange(1960, 1990, dtype=float)
+    y = bass_cumulative(t - 1960, 0.02, 0.3, 1.0, 0.0, 0.35) + rng.normal(0, 0.003, t.size)
+    return t, np.clip(y, 0.0, 1.0)
+
+
+def test_log_p_prior_pins_p_when_tight() -> None:
+    t, y = _late_start_series()
+    fit = fit_bass(t, y, m_bounds=(y.max() * 1.0001, 1.5), log_p_prior=(np.log(0.01), 0.01))
+    assert fit.params.p == pytest.approx(0.01, rel=0.02)
+    assert fit.r2 > 0.99
+
+
+def test_log_p_prior_keeps_p_off_the_bound_without_hurting_fit() -> None:
+    t = np.arange(1960, 1990, dtype=float)
+    # p is irrelevant for this curve, so the plain fit has nothing to hold it
+    y = bass_cumulative(t - 1960, 1e-7, 0.3, 1.0, 0.0, 0.35)
+    bounds = (y.max(), 1.0)
+    ml = fit_bass(t, y, m_bounds=bounds)
+    reg = fit_bass(t, y, m_bounds=bounds, log_p_prior=(np.log(0.01), 1.5))
+    assert ml.params.p < 1e-5
+    assert reg.params.p > ml.params.p
+    assert reg.rmse < 0.01  # shrinkage costs almost no fit quality
+
+
 def test_fit_rejects_short_series() -> None:
     with pytest.raises(ValueError):
         fit_bass([1, 2, 3], [0.1, 0.2, 0.3])

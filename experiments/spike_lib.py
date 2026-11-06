@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import warnings
 from dataclasses import dataclass
+from typing import Any
 
 import numpy as np
 import pandas as pd
@@ -23,14 +24,15 @@ from adoptsim.models import fit_bass, takeoff_duration
 TARGETS = ("log_q", "log_p", "takeoff_10_90")
 
 
-def fit_all(curves: pd.DataFrame) -> pd.DataFrame:
+def fit_all(curves: pd.DataFrame, **fit_kwargs: Any) -> pd.DataFrame:
     """Fit a Bass curve per technology with m bounded by 100 % adoption."""
     rows = []
     for tech, g in curves.groupby("technology", sort=True):
         t, y = g["year"].to_numpy(float), g["adoption"].to_numpy(float)
         y_max = float(y.max())
         try:
-            fit = fit_bass(t, y, m_bounds=(y_max * 1.0001, max(1.0, y_max * 1.001)))
+            m_bounds = (y_max * 1.0001, max(1.0, y_max * 1.001))
+            fit = fit_bass(t, y, m_bounds=m_bounds, **fit_kwargs)
         except ValueError as exc:
             warnings.warn(f"{tech}: {exc}", stacklevel=2)
             continue

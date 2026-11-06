@@ -39,7 +39,12 @@ class BassFit:
 
 
 def bass_cumulative(
-    t: ArrayLike, p: float, q: float, m: float, t0: float = 0.0, n0: float = 0.0
+    t: ArrayLike,
+    p: float | FloatArray,
+    q: float | FloatArray,
+    m: float | FloatArray,
+    t0: float = 0.0,
+    n0: float = 0.0,
 ) -> FloatArray:
     """Cumulative adoption N(t) solving dN/dt = (p + q N/m)(m - N) with N(t0) = n0.
 
@@ -92,11 +97,18 @@ def fit_bass(
     m_bounds: tuple[float, float] | None = None,
     n_starts: int = 12,
     seed: int = 0,
+    log_p_prior: tuple[float, float] | None = None,
+    obs_sd: float = 0.02,
 ) -> BassFit:
     """Nonlinear least-squares fit anchored at the first observation.
 
     Parameters are optimised in log space for scale invariance. Multiple random
     starts guard against the flat likelihood ridges typical for p.
+
+    `log_p_prior=(mean, sd)` turns the fit into a MAP estimate with a Gaussian prior on
+    log p. When a series starts well after launch, p is not identified and the plain
+    fit runs into its lower bound; a weak prior keeps it at a plausible value. The prior
+    enters as an extra residual scaled by the assumed observation noise `obs_sd`.
     """
     t_arr = np.asarray(t, dtype=float)
     y_arr = np.asarray(y, dtype=float)
@@ -116,9 +128,16 @@ def fit_bass(
     lb = np.log([1e-6, 1e-4, lo_m])
     ub = np.log([1.0, 3.0, hi_m])
 
-    def residuals(theta: FloatArray) -> FloatArray:
+    def data_residuals(theta: FloatArray) -> FloatArray:
         p, q, m = np.exp(theta)
         return np.asarray(bass_cumulative(t_arr, p, q, m, t0, n0) - y_arr, dtype=float)
+
+    def residuals(theta: FloatArray) -> FloatArray:
+        r = data_residuals(theta)
+        if log_p_prior is None:
+            return r
+        mu, tau = log_p_prior
+        return np.append(r, obs_sd / tau * (theta[0] - mu))
 
     rng = np.random.default_rng(seed)
     best = None
@@ -129,7 +148,7 @@ def fit_bass(
             best = res
     assert best is not None
     p, q, m = (float(v) for v in np.exp(best.x))
-    resid = best.fun
+    resid = data_residuals(best.x)
     ss_res = float(np.sum(resid**2))
     ss_tot = float(np.sum((y_arr - y_arr.mean()) ** 2))
     return BassFit(
